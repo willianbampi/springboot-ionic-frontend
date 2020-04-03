@@ -20,7 +20,7 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
 
-  public login() {
+  login() {
     this.navCtrl.setRoot('CategoryPage');
   }
 
