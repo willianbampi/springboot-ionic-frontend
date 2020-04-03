@@ -4,13 +4,6 @@ import { CategoryService } from '../../services/domain/category.service';
 import { CategoryDTO } from '../../models/category.dto';
 import { API_CONFIGURATION } from '../../configurations/api.configuration';
 
-/**
- * Generated class for the CategoryPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-category',
