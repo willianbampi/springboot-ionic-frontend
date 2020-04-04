@@ -11,7 +11,10 @@ export class AuthorizationService {
 
     jwtHelper: JwtHelper = new JwtHelper();
 
-    constructor(public httpClient: HttpClient, public storageService: StorageService){
+    constructor(
+        public httpClient: HttpClient, 
+        public storageService: StorageService
+    ){
 
     }
 

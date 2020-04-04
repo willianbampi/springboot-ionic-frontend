@@ -7,7 +7,9 @@ import { Observable } from "rxjs/Rx";
 @Injectable()
 export class CategoryService {
 
-    constructor(public htppClient: HttpClient){
+    constructor(
+        public htppClient: HttpClient
+    ){
 
     }
 

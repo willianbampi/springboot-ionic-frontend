@@ -14,7 +14,11 @@ export class CategoryPage {
   items: CategoryDTO[];
   baseBucketUrl: string = API_CONFIGURATION.baseBucketUrl;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public categoryService: CategoryService) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public categoryService: CategoryService
+  ) {
   }
 
   ionViewDidLoad() {

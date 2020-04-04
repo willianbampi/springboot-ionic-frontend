@@ -12,6 +12,7 @@ import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthorizationService } from '../services/authorization.service';
 import { StorageService } from '../services/storage.service';
 import { ClientService } from '../services/domain/client.service';
+import { AuthorizationInterceptorProvider } from '../interceptors/authorization-interceptor';
 
 @NgModule({
   declarations: [
@@ -29,8 +30,12 @@ import { ClientService } from '../services/domain/client.service';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {
+      provide: ErrorHandler, 
+      useClass: IonicErrorHandler
+    },
     CategoryService,
+    AuthorizationInterceptorProvider,
     ErrorInterceptorProvider,
     AuthorizationService,
     StorageService,

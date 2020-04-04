@@ -19,7 +19,7 @@ export class ProfilePage {
     public navParams: NavParams, 
     public storageService: StorageService,
     public clientService: ClientService
-    ) {
+  ) {
   }
 
   ionViewDidLoad() {

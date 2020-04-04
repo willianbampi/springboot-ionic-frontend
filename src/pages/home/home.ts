@@ -15,7 +15,11 @@ export class HomePage {
     password: ""
   };
 
-  constructor(public navCtrl: NavController, public menu: MenuController, public authorizationService: AuthorizationService) {
+  constructor(
+    public navCtrl: NavController, 
+    public menu: MenuController, 
+    public authorizationService: AuthorizationService
+  ) {
 
   }
 
