@@ -45,7 +45,8 @@ export class ProfilePage {
     if(baseBucketUrl){
       this.clientService.getImageFromBucket(this.client.id)
       .subscribe(response => {
-        this.client.imageUrl = `${baseBucketUrl}/cp${this.client.id}.jpg`;
+        let url = `${baseBucketUrl}/cp${this.client.id}.jpg`;
+        this.client.imageUrl = url;
       },
       error => {});
     }

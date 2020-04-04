@@ -19,12 +19,12 @@ export class AuthorizationService {
     }
 
     authorization(credential: CredentialDTO){
-        return this.httpClient.post(`${API_CONFIGURATION.baseUrl}/login`, 
-                             credential, 
-                             {
-                                 observe: 'response', 
-                                 responseType: 'text'
-                            });
+        let url = `${API_CONFIGURATION.baseUrl}/login`;
+        return this.httpClient.post(url, credential, 
+            {
+                observe: 'response', 
+                responseType: 'text'
+        });
     }
 
     successfullLogin(authorizationValue : string){
@@ -34,6 +34,15 @@ export class AuthorizationService {
             email: this.jwtHelper.decodeToken(authorizationToken).sub
         };
         this.storageService.setLocalUser(user);
+    }
+
+    refreshToken(){
+        let url = `${API_CONFIGURATION.baseUrl}/auth/refresh_token`;
+        return this.httpClient.post(url, {}, 
+            {
+                observe: 'response', 
+                responseType: 'text'
+        });
     }
 
     logout(){
