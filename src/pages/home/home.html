@@ -1,18 +1,23 @@
 <ion-content padding>
+  
   <h3 text-center>Sistema de pedidos</h3>
 
   <img src="assets/imgs/tela-inicial.png" alt="logo">
 
   <form>
+
     <ion-item>
       <ion-label stacked>Email</ion-label>
       <ion-input [(ngModel)]="credential.email" name="email" type="text"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label stacked>Senha</ion-label>
       <ion-input [(ngModel)]="credential.password" name="password" type="password"></ion-input>
     </ion-item>
+
     <button ion-button block (click)="login()">Entrar</button>
+
   </form>
   <button ion-button block outline (click)="signup()">Registrar</button>
 
