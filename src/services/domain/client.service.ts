@@ -28,4 +28,14 @@ export class ClientService {
         }
     }
 
+    insert(client: ClientDTO) {
+        let url = `${API_CONFIGURATION.baseUrl}/clients`;
+        return this.httpClient.post(url, client, 
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+    }
+
 }
