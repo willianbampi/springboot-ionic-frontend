@@ -28,7 +28,7 @@ export class ProfilePage {
       this.clientService.findByEmail(localUser.email)
         .subscribe(response => {
           this.client = response;
-          this.getImageExistis();
+          this.getImageExists();
         },
         error => {
           if(error.status == 403){
@@ -40,7 +40,7 @@ export class ProfilePage {
     }
   }
 
-  getImageExistis(){
+  getImageExists(){
     let baseBucketUrl = API_CONFIGURATION.baseBucketUrl;
     if(baseBucketUrl){
       this.clientService.getImageFromBucket(this.client.id)

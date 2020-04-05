@@ -13,6 +13,7 @@ import { AuthorizationService } from '../services/authorization.service';
 import { StorageService } from '../services/storage.service';
 import { ClientService } from '../services/domain/client.service';
 import { AuthorizationInterceptorProvider } from '../interceptors/authorization-interceptor';
+import { ProductService } from '../services/domain/product.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthorizationInterceptorProvider } from '../interceptors/authorization-
     ErrorInterceptorProvider,
     AuthorizationService,
     StorageService,
-    ClientService
+    ClientService,
+    ProductService
   ]
 })
 export class AppModule {}
