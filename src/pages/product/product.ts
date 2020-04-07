@@ -11,7 +11,8 @@ import { API_CONFIGURATION } from '../../configurations/api.configuration';
 })
 export class ProductPage {
 
-  items: ProductDTO[];
+  items: ProductDTO[] = [];
+  page: number = 0;
 
   constructor(
     public navCtrl: NavController, 
@@ -29,19 +30,21 @@ export class ProductPage {
   loadData() {
     let category_id = this.navParams.get('category_id');
     let loader = this.presentLoading();
-    this.productService.findProductyCategory(category_id)
+    this.productService.findProductyCategory(category_id, this.page, 10)
       .subscribe(response => {
-        this.items = response['content'];
+        let start = this.items.length;
+        this.items = this.items.concat(response['content']);
+        let end = this.items.length - 1;
         loader.dismiss();
-        this.loadImageUrls();
+        this.loadImageUrls(start, end);
       },
       error =>{
         loader.dismiss();
       });
   }
 
-  loadImageUrls() {
-    for(var i = 0; i < this.items.length; i++){
+  loadImageUrls(start: number, end: number) {
+    for(var i = start; i <= end; i++){
       let item = this.items[i];
       let baseBucketUrl = API_CONFIGURATION.baseBucketUrl;
       if(baseBucketUrl){
@@ -70,9 +73,19 @@ export class ProductPage {
   }
 
   doResfresh(refresher) {
+    this.page = 0;
+    this.items = [];
     this.loadData();
     setTimeout(() => {
       refresher.complete();
+    }, 1000);
+  }
+
+  doInfinite(infiniteScroll) {
+    this.page++;
+    this.loadData();
+    setTimeout(() => {
+      infiniteScroll.complete();
     }, 1000);
   }
 

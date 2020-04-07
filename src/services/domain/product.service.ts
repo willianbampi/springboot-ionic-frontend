@@ -13,8 +13,8 @@ export class ProductService {
 
     }
 
-    findProductyCategory(category_id: string) {
-        let url = `${API_CONFIGURATION.baseUrl}/products/page?categories=${category_id}`;
+    findProductyCategory(category_id: string, page: number = 0, linesPerPage: number = 24) {
+        let url = `${API_CONFIGURATION.baseUrl}/products/page?categories=${category_id}&page=${page}&linesPerPage=${linesPerPage}`;
         return this.httpClient.get(url);
     }
 
