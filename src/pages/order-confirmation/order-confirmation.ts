@@ -6,6 +6,7 @@ import { CartService } from '../../services/domain/cart.service';
 import { ClientDTO } from '../../models/client.dto';
 import { AddressDTO } from '../../models/address.dto';
 import { ClientService } from '../../services/domain/client.service';
+import { OrderService } from '../../services/domain/order.service';
 
 @IonicPage()
 @Component({
@@ -18,12 +19,14 @@ export class OrderConfirmationPage {
   cartItems: CartItem[];
   client: ClientDTO;
   address: AddressDTO;
+  orderId: string;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public cartService: CartService,
-    public clientService: ClientService
+    public clientService: ClientService,
+    public orderService: OrderService
   ) {
     this.order = this.navParams.get('order');
   }
@@ -47,6 +50,32 @@ export class OrderConfirmationPage {
 
   orderAmount() {
     return this.cartService.cartAmount();
+  }
+
+  backCartPage() {
+    this.navCtrl.setRoot('CartPage');
+  }
+
+  backCategoryPage() {
+    this.navCtrl.setRoot('CategoryPage');
+  }
+
+  checkout() {
+    this.orderService.insert(this.order)
+      .subscribe(response => {
+        this.cartService.createOrClearCart();
+        this.orderId = this.extractId(response.headers.get('location'));
+      },
+      error =>{
+        if(error.status == 403){
+          this.navCtrl.setRoot('HomePage');
+        }
+      });
+  }
+
+  private extractId(location: string): string {
+    let position = location.lastIndexOf('/');
+    return location.substring(position + 1, location.length);
   }
 
 }
