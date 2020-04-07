@@ -4,13 +4,15 @@ import { Observable } from "rxjs/Rx";
 import { ClientDTO } from "../../models/client.dto";
 import { API_CONFIGURATION } from "../../configurations/api.configuration";
 import { StorageService } from "../storage.service";
+import { ImageUtilService } from "../image_util.service";
 
 @Injectable()
 export class ClientService {
     
     constructor(
         public httpClient: HttpClient, 
-        public storageService: StorageService
+        public storageService: StorageService,
+        public imageUtilService: ImageUtilService
     ){
 
     }
@@ -36,6 +38,19 @@ export class ClientService {
     insert(client: ClientDTO) {
         let url = `${API_CONFIGURATION.baseUrl}/clients`;
         return this.httpClient.post(url, client, 
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+    }
+
+    uploadPicture(picture) {
+        let pictureBlob = this.imageUtilService.dataUriToBlob(picture);
+        let formData: FormData = new FormData();
+        formData.set('file', pictureBlob, 'file.png');
+        let url = `${API_CONFIGURATION.baseUrl}/clients/picture`;
+        return this.httpClient.post(url, formData, 
             {
                 observe: 'response',
                 responseType: 'text'
