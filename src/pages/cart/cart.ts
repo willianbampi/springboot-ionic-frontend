@@ -65,4 +65,8 @@ export class CartPage {
     this.navCtrl.setRoot('CategoryPage');
   }
 
+  checkout() {
+    this.navCtrl.push('PickAddressPage');
+  }
+
 }

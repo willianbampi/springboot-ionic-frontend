@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Endereço de Entrega</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    
+    <ion-list-header text-center>
+      Selecione um endereço para entrega
+    </ion-list-header>
+
+    <button ion-item *ngFor="let address of addresses">
+      <h2>{{address.street}}, {{address.number}}</h2>
+      <p>{{address.complement}} {{address.neighborhood}} CEP {{address.cep}}</p>
+      <p>{{address.city.name}}, {{address.city.federativeUnity.name}}</p>
+    </button>
+
+  </ion-list>
+
+</ion-content>
