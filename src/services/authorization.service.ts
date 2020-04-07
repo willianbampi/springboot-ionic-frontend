@@ -42,7 +42,8 @@ export class AuthorizationService {
     refreshToken(){
         let url = `${API_CONFIGURATION.baseUrl}/auth/refresh_token`;
         console.log(url);
-        return this.httpClient.post(url, {}, 
+        return this.httpClient.post(url, 
+            {}, 
             {
                 observe: 'response', 
                 responseType: 'text'

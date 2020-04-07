@@ -64,7 +64,9 @@ export class PickAddressPage {
     this.order.deliveryAddress = {
       id: address.id
     };
-    console.log(this.order);
+    this.navCtrl.push('PaymentPage', {
+      order: this.order
+    });
   }
 
 }
