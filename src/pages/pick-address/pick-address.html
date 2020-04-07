@@ -15,7 +15,7 @@
       Selecione um endereço para entrega
     </ion-list-header>
 
-    <button ion-item *ngFor="let address of addresses">
+    <button ion-item *ngFor="let address of addresses" (click)="nextPage(address)">
       <h2>{{address.street}}, {{address.number}}</h2>
       <p>{{address.complement}} {{address.neighborhood}} CEP {{address.cep}}</p>
       <p>{{address.city.name}}, {{address.city.federativeUnity.name}}</p>
