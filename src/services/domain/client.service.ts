@@ -15,6 +15,11 @@ export class ClientService {
 
     }
 
+    findById(id: string){
+        let url = `${API_CONFIGURATION.baseUrl}/clients/${id}`;
+        return this.httpClient.get(url);
+    }
+
     findByEmail(email: string){
         let url = `${API_CONFIGURATION.baseUrl}/clients/email?email=${email}`;
         return this.httpClient.get(url);

@@ -11,9 +11,7 @@
 
   <ion-list>
     
-    <ion-list-header text-center>
-      Selecione um endereço para entrega
-    </ion-list-header>
+    <ion-list-header text-center>Selecione um endereço para entrega</ion-list-header>
 
     <button ion-item *ngFor="let address of addresses" (click)="nextPage(address)">
       <h2>{{address.street}}, {{address.number}}</h2>
