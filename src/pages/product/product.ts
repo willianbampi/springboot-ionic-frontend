@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ProductDTO } from '../../models/product.dto';
 import { ProductService } from '../../services/domain/product.service';
 import { API_CONFIGURATION } from '../../configurations/api.configuration';
@@ -16,19 +16,28 @@ export class ProductPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public productService: ProductService
+    public productService: ProductService,
+    public loadingCtrl: LoadingController
   ) {
 
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     let category_id = this.navParams.get('category_id');
+    let loader = this.presentLoading();
     this.productService.findProductyCategory(category_id)
       .subscribe(response => {
         this.items = response['content'];
+        loader.dismiss();
         this.loadImageUrls();
       },
-      error =>{});
+      error =>{
+        loader.dismiss();
+      });
   }
 
   loadImageUrls() {
@@ -50,6 +59,21 @@ export class ProductPage {
     this.navCtrl.push('ProductDetailPage', {
       product_id: product_id
     });
+  }
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Aguarde..."
+    });
+    loader.present();
+    return loader;
+  }
+
+  doResfresh(refresher) {
+    this.loadData();
+    setTimeout(() => {
+      refresher.complete();
+    }, 1000);
   }
 
 }
